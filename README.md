@@ -2,36 +2,25 @@
 
 Base62 for Ruby.
 
-I built this when building a [branca](https://branca.io) implementation for Ruby. However, I would suggest you *not* use
-this library and use a url-safe Base64 encoding instead as Base64 is much more efficient. How much more?
+This library offers Base62 encoding/decoding using a methodology that is generally compatible with encodings from other
+ecosystems. Unfortunately the approach is very inefficient. Just how inefficient is it? Well, here's a comparison
+between `b3bm`, `base_x`, and Ruby's url-safe Base64 encoder:
 
 ```
-$ bundle exec ruby benchmarks/encode_decode.rb
-
+$ bundle exec ruby benchmarks/decode.rb
 Warming up --------------------------------------
-                b3bm   210.000  i/100ms
-              base_x   202.000  i/100ms
-              base64    46.511k i/100ms
+                b3bm   105.000  i/100ms
+              base_x    97.000  i/100ms
+              base64    40.921k i/100ms
 Calculating -------------------------------------
-                b3bm      2.142k (± 3.2%) i/s -     10.710k in   5.006277s
-              base_x      2.014k (± 3.0%) i/s -     10.100k in   5.019257s
-              base64    508.645k (± 4.1%) i/s -      2.558M in   5.038325s
+                b3bm      1.079k (± 6.8%) i/s -      5.460k in   5.089545s
+              base_x    951.151  (± 4.9%) i/s -      4.753k in   5.010191s
+              base64    372.882k (±11.9%) i/s -      1.841M in   5.016939s
 
 Comparison:
-              base64:   508645.1 i/s
-                b3bm:     2141.7 i/s - 237.50x  (± 0.00) slower
-              base_x:     2014.2 i/s - 252.53x  (± 0.00) slower
+              base64:   372881.6 i/s
+                b3bm:     1078.9 i/s - 345.61x  (± 0.00) slower
+              base_x:      951.2 i/s - 392.03x  (± 0.00) slower
 ```
 
-Here's how to do a url-safe Base64 encode/decode in Ruby:
-
-```ruby
-require "base64"
-require "securerandom"
-
-string = SecureRandom.alphanumeric(128)
-encoded = Base64.urlsafe_encode64(string, padding: false)
-Base64.urlsafe_decode64(encoded)
-```
-
-Similar solutions probably exist for other languages.
+Use [`b3e`](https://github.com/metabahn/b3e) if you care about performance more than portability.

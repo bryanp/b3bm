@@ -7,7 +7,7 @@ require "securerandom"
 
 require "b3bm"
 
-string = SecureRandom.alphanumeric(128)
+string = SecureRandom.random_bytes(512)
 
 Benchmark.ips do |ips|
   ips.config(time: 5, warmup: 1)
@@ -21,7 +21,7 @@ Benchmark.ips do |ips|
   end
 
   ips.report("base64") do
-    Base64.urlsafe_encode64(string, padding: true)
+    Base64.urlsafe_encode64(string, padding: false)
   end
 
   ips.compare!
