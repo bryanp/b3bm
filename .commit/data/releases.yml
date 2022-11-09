@@ -1,12 +1,12 @@
 ---
 - version: v0.0.0
   date: 'v0.0.0'
-  link: https://github.com/metabahn/b3bm/releases/tag/v0.0.0
+  link: https://github.com/bryanp/b3bm/releases/tag/v0.0.0
   changes:
   - id: 1
     type: add
     summary: Initial implementation
-    link: https://github.com/metabahn/b3bm/pull/1
+    link: https://github.com/bryanp/b3bm/pull/1
     author:
       username: bryanp
       link: https://github.com/bryanp

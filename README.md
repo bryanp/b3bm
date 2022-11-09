@@ -23,4 +23,4 @@ Comparison:
               base_x:      951.2 i/s - 392.03x  (± 0.00) slower
 ```
 
-Use [`b3e`](https://github.com/metabahn/b3e) if you care about performance more than portability.
+Use [`b3e`](https://github.com/bryanp/b3e) if you care about performance more than portability.
